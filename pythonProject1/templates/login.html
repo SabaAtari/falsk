@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/bg1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .col-md-6 {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+  }
+
+  .welcomeRegion {
+    font-weight: 500;
+  }
+
+  /* Increase the size of the form fields */
+  .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  /* Increase the size of the submit button */
+  .btn-primary {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+  }
+     .flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #f2dede;
+    color: #a94442;
+  }
+
+  .success {
+    background-color: #dff0d8;
+    color: #3c763d;
+  }
+
+  .error {
+    background-color: #f2dede;
+    color: #a94442;
+  }
+</style>
+ <script>
+    function closeMessage(element) {
+        element.remove();
+    }
+</script>
+</head>
+<body>
+
+  <div class="container center">
+    <div class="col-md-6 welcomePage">
+      <h1>Welcome to My Website</h1>
+      <div class="welcomeRegion">
+      </div>
+      <h2>Login</h2>
+       {% for message in get_flashed_messages() %}
+      <div class="flash-message ">
+            {{ message }}
+            <span class="close-btn" onclick="closeMessage(this.parentNode)">&times;</span>
+        </div>
+     {% endfor %}
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.email.label }}
+          {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }}
+          {{ form.password(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+      </form>
+      <div>Do not have any account yet? <a href="{{url_for('register')}}">Register now!</a></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+ {% for message in get_flashed_messages() %}
+      <div class="flash-message ">
+            {{ message }}
+            <span class="close-btn" onclick="closeMessage(this.parentNode)">&times;</span>
+        </div>
+     {% endfor %}
+{% for item in mypost %}
+<div style="font-size: 20px; margin-bottom: 10px;">
+  {{item.content}}
+  <a href="{{url_for('edit',id=item.id)}}"><button style="margin-left: 10px;">Edit</button></a>
+  <a href="{{url_for('delete',id=item.id)}}"><button style="margin-left: 10px;">Delete</button></a>
+</div>
+{% endfor %}
+{% endblock %}

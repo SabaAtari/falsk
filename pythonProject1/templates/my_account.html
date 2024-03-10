@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+ <div class="container">
+      {% for message in get_flashed_messages() %}
+      <div class="flash-message ">
+            {{ message }}
+            <span class="close-btn" onclick="closeMessage(this.parentNode)">&times;</span>
+        </div>
+     {% endfor %}
+    {% for post in allposts %}
+      <div class="post-card" data-post-id="{{ post.id }}">
+        <div class="post-username">{{ post.username }}</div>
+        <div class="post-content">{{ post.content }}</div>
+        <div class="post-likes">Likes: {{ post.likes }}</div>
+        <div class="post-likers">Liked by:
+          {% for liker in post.likers %}
+            {{ liker }}
+            {% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </div><br>
+          <a href="{{url_for('interact',id=post.id)}}"><button class="like-button"><i class="fas fa-thumbs-up"></i></button></a>
+        <a href="{{ url_for('add_comment', id=post.id) }}"><button>Add Comment</button></a>
+        <a href="{{ url_for('show_comments', id=post.id) }}"><button>Show Comments</button></a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

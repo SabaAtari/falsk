@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <h1>Comments</h1>
+    <ul class="comment-list">
+    {% for comment in comments %}
+        <li class="comment">
+            <span class="username">{{ comment.username }}</span><br>
+            <span class="content">{{ comment.content }}</span>
+        </li>
+    {% endfor %}
+</ul>
+    <a href="{{ url_for('my_account') }}"><button>Back to Home</button></a>
+  </div>
+{% endblock %}

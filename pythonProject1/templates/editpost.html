@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" style="font-size: 20px;">
+    {{form.hidden_tag()}}
+    <div style="margin-bottom: 10px;">
+        {{form.title.label}}{{form.title(size=30)}}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{form.content.label}}{{form.content(rows=5, cols=50)}}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{form.tags.label}}{{form.tags(size=30)}}
+    </div>
+    {{form.submit()}}
+</form>
+{% endblock %}
